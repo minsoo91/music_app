@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MusicApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="container">
+		<%= flash.now[:errors] %>
+			<ul class="nav nav-pills" role="tablist">
+				<% if current_user %>
+					<li>
+						<form action="/session" method="POST">
+							<input name="authenticity_token"
+							       type="hidden"
+							       value="<%= form_authenticity_token %>">
+							<input type="hidden" name="_method" value="DELETE">
+							<button type="submit" class="btn btn-default navbar-btn">Logout</button>
+						</form>
+					</li>
+				<% else %>
+					<li>
+						<form action="/session/new" method="GET">
+							<input name="authenticity_token"
+							       type="hidden"
+							       value="<%= form_authenticity_token %>">
+							<button type="submit" class="btn btn-default navbar-btn">Sign In</button>
+						</form>
+					</li>
+					<li>
+						<form action="/user/new" method="GET">
+							<input name="authenticity_token"
+							       type="hidden"
+							       value="<%= form_authenticity_token %>">
+							<button type="submit" class="btn btn-default navbar-btn">Create an Account!</button>
+						</form>
+					</li>
+				<% end %>
+			</ul>
+		<%= yield %>
+	</div>
+</body>
+</html>

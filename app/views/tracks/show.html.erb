@@ -1,0 +1,9 @@
+<h1><%= @track.name %></h1>
+
+<p><%= ugly_lyrics(@track.lyrics) %></p>
+
+<%= render partial: 'notes/note' %>
+<%= render partial: 'notes/form' %>
+<%= button_to "Delete Track!", track_url(@track), method: :delete %>
+<%= button_to "Back to Tracks List", album_url(Album.find(@track.album_id)), method: :get %>
+

@@ -1,0 +1,13 @@
+<h1><%= @album.name %></h1>
+
+<ul>
+	<% Track.all.each do |track| %>
+		<% if track.album_id == @album.id %>
+	  		<li><%= link_to track.name, track_url(track) %></li>
+	  	<% end %>
+	<% end %>
+</ul>
+
+<%= button_to "Create New Track!", new_album_track_url(@album), method: :get %>
+<%= button_to "Delete Album!", album_url(@album), method: :delete %>
+<%= button_to "Back to Albums List", band_url(Band.find(@album.band_id)), method: :get %>

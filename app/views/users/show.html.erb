@@ -1,0 +1,7 @@
+<h1>Hi 
+	<% unless current_user.nil?%> 
+		<%= current_user.email %>
+	<% else %>
+		<%= "Guest" %>
+	<% end %>
+</h1>
